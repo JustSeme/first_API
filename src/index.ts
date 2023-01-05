@@ -44,6 +44,13 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello Samurai!')
 })
 
+app.get('/title', (req, res) => {
+    res.json({
+        id: 21,
+        title: 'title'
+    })
+})
+
 app.get('/courses', (req: RequestWithQuery<QueryCoursesModel>,
                     res: Response<CourseViewModel[]>) => {
     const foundCourses = req.query.title ? db.courses
