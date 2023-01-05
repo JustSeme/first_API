@@ -9,6 +9,12 @@ describe('/course', () => {
             .delete('/courses')
     })
 
+    it('should return greeting', async () => {
+        await request(app)
+            .get('/')
+            .expect(200, 'Hello Samurai!')
+    })
+
     it('should return 200 and empty array', async () => {
         await request(app)
             .get('/courses')

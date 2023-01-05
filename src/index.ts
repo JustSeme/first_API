@@ -1,4 +1,4 @@
-import express, { Response } from 'express'
+import express, { Response, Request } from 'express'
 import { CourseViewModel } from './models/CourseViewModel'
 import { CreateCourseModel } from './models/CreateCourseModel'
 import { QueryCoursesModel } from './models/QueryCoursesModel'
@@ -38,6 +38,10 @@ const db: { courses: CourseType[] } = {
 const getCourseViewModel = (dbCourse: CourseType) => ({
     id: dbCourse.id,
     title: dbCourse.title
+})
+
+app.get('/', (req: Request, res: Response) => {
+    res.send('Hello Samurai!')
 })
 
 app.get('/courses', (req: RequestWithQuery<QueryCoursesModel>,
