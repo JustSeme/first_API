@@ -31,12 +31,6 @@ const getCourseViewModel = (dbCourse) => ({
 exports.app.get('/', (req, res) => {
     res.send('Hello Samurai!');
 });
-exports.app.get('/title', (req, res) => {
-    res.json({
-        id: 21,
-        title: 'title'
-    });
-});
 exports.app.get('/courses', (req, res) => {
     const foundCourses = req.query.title ? db.courses
         .filter(c => c.title.indexOf(req.query.title) > -1)

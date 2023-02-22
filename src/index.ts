@@ -5,11 +5,13 @@ import { QueryCoursesModel } from './models/QueryCoursesModel'
 import { UpdateCourseModel } from './models/UpdateCourseModel'
 import { URIParamsCourseIdModel } from './models/URIParamsCourseIdModel'
 import { RequestWithBody, RequestWithParams, RequestWithParamsAndBody, RequestWithQuery } from './types'
+import cors from 'cors'
 
 export const app = express()
 const port = 3000
 const jsonBodyMiddleWare = express.json()
 app.use(jsonBodyMiddleWare)
+app.use(cors())
 
 export const HTTP_STATUSES = {
     OK_200: 200,
@@ -44,13 +46,6 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello Samurai!')
 })
 
-app.get('/title', (req, res) => {
-    res.json({
-        id: 21,
-        title: 'title'
-    })
-})
-
 app.get('/courses', (req: RequestWithQuery<QueryCoursesModel>,
                     res: Response<CourseViewModel[]>) => {
     const foundCourses = req.query.title ? db.courses
@@ -83,7 +78,7 @@ app.post('/courses', (req: RequestWithBody<CreateCourseModel>,
         id: +(new Date()),
         title: req.body.title,
         studentsCount: 0
-    }
+    }   
     db.courses.push(createdCourse)
 
     res.status(HTTP_STATUSES.CREATED_201)
