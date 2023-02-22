@@ -12,7 +12,11 @@ const port = 3000
 const jsonBodyMiddleWare = express.json()
 app.use(jsonBodyMiddleWare)
 
-app.use(cors())
+const corsOptions = {
+    origin: 'https://www.bizi.store/',
+    optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 
 export const HTTP_STATUSES = {
     OK_200: 200,
