@@ -11,7 +11,12 @@ export const app = express()
 const port = 3000
 const jsonBodyMiddleWare = express.json()
 app.use(jsonBodyMiddleWare)
-app.use(cors())
+
+const corsOptions = {
+    origin: 'http://127.0.0.1:5500/',
+    optionsSuccessStatus: 200
+}
+app.use(cors(corsOptions))
 
 export const HTTP_STATUSES = {
     OK_200: 200,
